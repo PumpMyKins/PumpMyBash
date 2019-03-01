@@ -13,9 +13,9 @@ echo $SSH_USER
 echo $SOURCE_PATH
 echo $DESTINATION_PATH
 
-bash ./discord.sh --webhook-url=$WEBHOOK --text "Server backup started !"
+bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "Server backup started !"
 
-FILE=".backup-date"   
+FILE=".backup-date"
 if [ -f $FILE ]; then
     FILE_CONTENT=$(cat $FILE)
     echo "File $FILE exists. DATE => $FILE_CONTENT"
@@ -28,7 +28,9 @@ else
     rsync -avHP -e "ssh -p $PORT" --numeric-ids $SOURCE_PATH $SSH_USER@$HOST:"$DESTINATION_PATH/backup-last"
 fi
 
+DATE=`date '+%Y_%m_%d=%H_%M_%S'`
+
 echo $DATE > $FILE
 
 echo "Discord Notifier"
-bash ./discord.sh --webhook-url=$WEBHOOK --text "Server backup finished !"
+bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "Server backup finished !"
