@@ -32,7 +32,7 @@ do
 	echo "§FILE_PREFFIX$DATE"
 	if [ -f "$FILE_PREFFIX$DATE" ];
 	then
-    		echo "Crash-report found !"
+		echo "Crash-report found !"
 		bash ./discord.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Crash du serveur ?!? \n"
 	else
 		echo "No crash-report found."
