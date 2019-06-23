@@ -13,8 +13,8 @@ CRASH_DIRECTORY="crash-report/"
 
 function ctrl_c() {
 	bash ./discord.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Redémarrage automatique du serveur annulé depuis la console"
-        echo "** Trapped CTRL-C"
-        exit 1
+	echo "** Trapped CTRL-C"
+	exit 1
 }
 
 a=1
@@ -32,11 +32,11 @@ do
 	echo "§FILE_PREFFIX$DATE"
 	if [ -f "$FILE_PREFFIX$DATE" ];
 	then
-    	echo "Crash-report found !"
+    		echo "Crash-report found !"
 		bash ./discord.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Crash du serveur ?!? \n"
 	else
-    	echo "No crash-report found."
-    	bash ./discord.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Serveur arreté."
+		echo "No crash-report found."
+		bash ./discord.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Serveur arreté."
 	fi
 
 done
