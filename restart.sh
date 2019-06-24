@@ -4,7 +4,8 @@
 LAUNCH_ARG=""
 
 #discord notifier option
-WEBHOOK=""
+WEBHOOK_URL=""
+WEBHOOK_ICON=""
 SERVER_NAME=""
 
 # crash-report option
@@ -12,7 +13,7 @@ FILE_PREFFIX="crash-"
 CRASH_DIRECTORY="crash-report/"
 
 function ctrl_c() {
-        bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Redémarrage automatique du serveur annulé depuis la console"
+        bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --author "$SERVER_NAME" --author-icon "$WEBHOOK_ICON" --description "Redémarrage automatique du serveur annulé depuis la console"
         echo "** Trapped CTRL-C"
         exit 1
 }
@@ -24,7 +25,7 @@ do
         trap ctrl_c INT
         sleep 6
 
-        bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Démarrage du serveur."
+        bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --author "$SERVER_NAME" --author-icon "$WEBHOOK_ICON" --description "Démarrage du serveur."
 
         $LAUNCH_ARG
 
@@ -33,10 +34,10 @@ do
         if [ -f "$CRASH_DIRECTORY/$FILE_PREFFIX$DATE" ];
         then
                 echo "Crash-report found !"
-                bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Crash du serveur ?!? \n"
+                bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --author "$SERVER_NAME" --author-icon "$WEBHOOK_ICON" --description "Crash du serveur ?!? \n" --text "@here"
         else
                 echo "No crash-report found."
-                bash ./discord-notifier.sh --webhook-url=$WEBHOOK --text "$SERVER_NAME : Serveur arreté."
+                bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --author "$SERVER_NAME" --author-icon "$WEBHOOK_ICON" --description "Serveur arreté ."
         fi
 
 done
