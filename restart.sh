@@ -18,15 +18,19 @@ function ctrl_c() {
 
 while :
 do
+        trap ctrl_c INT
         DATE=`date '+%Y-%m-%d_%H.%M'`
         bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --username "$SERVER_NAME" --avatar "$WEBHOOK_ICON" --description "$DATE Démarrage du serveur."
 
         $LAUNCH_ARG
 
+
         DATE=`date '+%Y-%m-%d_%H.%M'`
+        bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --username "$SERVER_NAME" --avatar "$WEBHOOK_ICON" --description "$DATE Serveur arreté."
+        
         echo "Vous avez 6 secondes pour annuler le redémarrage avec la touche CTRL+C"
         trap ctrl_c INT
         sleep 6
 
-        bash ./discord-notifier.sh --webhook-url=$WEBHOOK_URL --username "$SERVER_NAME" --avatar "$WEBHOOK_ICON" --description "$DATE Serveur arreté."
+
 done
