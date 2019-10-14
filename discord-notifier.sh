@@ -36,24 +36,25 @@ webhook_file="${thisdir}/.webhook"
 help_text="Usage: discord.sh --webhook-url=<url> [OPTIONS]
 
 General options:
-  --help                           Display this help and exit
-  --text <text>                    Body text of message to send
-  --tts                            Send message with text-to-speech enabled
+  --help                         Display this help and exit
+  --text <text>                  Body text of message to send
+  --tts                          Send message with text-to-speech enabled
+  --webhook-url                  Specify the Discord webhook URL
 
 Identity options:
-  --username <name>                Set username to <name>
-  --avatar <url>                   Set avatar to image located at <url>
+  --username <name>              Set username to <name>
+  --avatar <url>                 Set avatar to image located at <url>
 
 Embedded content options:
   Main:
-    --title <title>                Display embed title as <title>
-    --description <description>    Display embed description as <description>
-    --url <url>                    URL of content
-    --color <color>                Set color of bar on left border of embed
+    --title <title>              Display embed title as <title>
+    --description <description>  Display embed description as <description>
+    --url <url>                  URL of content
+    --color <color>              Set color of bar on left border of embed
       Syntax of <color>:
         Option 1: 0x<hexadecimal number> (Example: --color 0xFFFFF)
         Option 2: <decimal number> (Example: --color 16777215)
-    --thumbnail <url>              Set thumbnail to image located at <url>
+    --thumbnail <url>            Set thumbnail to image located at <url>
 
 Author:
   --author <name>                Display author name as <name>
@@ -393,4 +394,3 @@ fi
 
 ## has file. send as such
 send_file
-
